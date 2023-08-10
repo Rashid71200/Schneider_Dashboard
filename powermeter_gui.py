@@ -6,7 +6,6 @@ import struct
 import tkinter as tk
 import webbrowser
 
-
 def open_link(event):
     webbrowser.open("https://ahrneloy.github.io/")
 
@@ -17,10 +16,10 @@ def update_text():
 
         
         # Read the holding register values
-        response1 = client.read_holding_registers(address=3019, count=2, unit=2)
-        response2 = client.read_holding_registers(address=3009, count=2, unit=2)
-        response3 = client.read_holding_registers(address=3059, count=2, unit=2)
-        response4 = client.read_holding_registers(address=3109, count=2, unit=2)
+        response1 = client.read_holding_registers(address=3546, count=2, unit=1)
+        response2 = client.read_holding_registers(address=3646, count=2, unit=1)
+        response3 = client.read_holding_registers(address=3746, count=2, unit=1)
+        response4 = client.read_holding_registers(address=3846, count=2, unit=1)
 
         if response1.isError():
             print(f"Request error: {response1}")
@@ -32,19 +31,19 @@ def update_text():
             #print("Voltage =", val01, "V")
             #print("Voltage =", val11, "V")
 
-            decoder = BinaryPayloadDecoder.fromRegisters(response1.registers, Endian.Big, wordorder=Endian.Big)
+            decoder = BinaryPayloadDecoder.fromRegisters(response1.registers, Endian.Big, wordorder=Endian.Little)
             #print("Voltage =", decoder.decode_32bit_float(), "V")
             canvas.itemconfig(text1, text=str( round(decoder.decode_32bit_float(), 2)))
 
 
-            decoder1 = BinaryPayloadDecoder.fromRegisters(response2.registers, Endian.Big, wordorder=Endian.Big)
+            decoder1 = BinaryPayloadDecoder.fromRegisters(response2.registers, Endian.Big, wordorder=Endian.Little)
             canvas.itemconfig(text2, text=str( round(decoder1.decode_32bit_float(), 2)))
 
-            decoder2 = BinaryPayloadDecoder.fromRegisters(response3.registers, Endian.Big, wordorder=Endian.Big)
+            decoder2 = BinaryPayloadDecoder.fromRegisters(response3.registers, Endian.Big, wordorder=Endian.Little)
             canvas.itemconfig(text3, text=str(round(decoder2.decode_32bit_float(), 2)))
 
 
-            decoder3 = BinaryPayloadDecoder.fromRegisters(response4.registers, Endian.Big, wordorder=Endian.Big)
+            decoder3 = BinaryPayloadDecoder.fromRegisters(response4.registers, Endian.Big, wordorder=Endian.Little)
             canvas.itemconfig(text5, text=str(round(decoder3.decode_32bit_float(), 2)))
 
             #print(str(round(decoder3.decode_32bit_float(), 2)))
@@ -76,10 +75,10 @@ def int_to_float(data0, data1):
 
 client = ModbusSerialClient(
         method='rtu',
-        port='COM11',
+        port='COM6',
         baudrate=9600,
         bytesize=8,
-        parity='N',
+        parity='E',
         stopbits=1,
         timeout=1
     )
@@ -102,7 +101,7 @@ canvas = tk.Canvas(root, width=832, height=861)
 canvas.pack()
 
 # Load and display the image
-image = tk.PhotoImage(file="Schneider_meter1.png")
+image = tk.PhotoImage(file="C:/Users/AhrNeloy/Desktop/final_dash_board_code/modbus_python_V2/Schneider_meter1.png")
 canvas.create_image(0, 0, anchor="nw", image=image)
 
 # Create and place the text labels

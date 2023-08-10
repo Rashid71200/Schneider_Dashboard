@@ -1,30 +1,18 @@
 from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.client.sync import ModbusTcpClient
-from pymodbus.transaction import ModbusRtuFramer as ModbusFramer
 import time
-
-#client = ModbusTcpClient( '192.63.12.155', port=63,framer=ModbusFramer)
-#update xxx with IP of the IP of the RS485-Ethernet adapter and yy with port number of the RS485-Ethernet adapter
+import mysql.connector
 
 update_time = 2
 port = 502
 
-
 ip_list = {
-              
-                '127.0.0.2': 5,
-                '127.0.0.3': 3,
-                '127.0.0.4': 5,
-                '127.0.0.5': 2,
-                '127.0.0.6': 7,
-                '127.0.0.7': 5,
-                '127.0.0.8': 9,
-       }
-
+      '127.0.0.9': 4,
+}
 
 holding_register_list = {
-"Active Energy Delivered (Into Load)": 2700,
+    "Active Energy Delivered (Into Load)": 2700,
     "Active Energy Received (Out of Load)": 2702,
     "Active Energy Delivered + Received": 2704,
     "Active Energy Delivered- Received": 2706,
@@ -80,11 +68,42 @@ holding_register_list = {
     "Apparent Power B": 3072,
     "Apparent Power C": 3074,
     "Apparent Power Total": 3076,
-       }
+}
 
-number_of_meter = len(ip_list)
+def create_connection():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="$n200000G"
+    )
 
+def create_database(connection, db_name):
+    try:
+        cursor = connection.cursor()
+        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name}")
+        cursor.execute(f"USE {db_name}")
+    except mysql.connector.Error as err:
+        print("Error creating database:", err)
+        exit(1)
 
+def create_table(connection, table_name, columns):
+    try:
+        cursor = connection.cursor()
+        column_definitions = ', '.join([f"{col_name} FLOAT" for col_name in columns])
+        cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} (id INT AUTO_INCREMENT PRIMARY KEY, {column_definitions})")
+    except mysql.connector.Error as err:
+        print("Error creating table:", err)
+        exit(1)
+
+def insert_data(connection, table_name, data):
+    try:
+        cursor = connection.cursor()
+        column_names = ', '.join(data.keys())
+        column_values = ', '.join([str(value) for value in data.values()])
+        cursor.execute(f"INSERT INTO {table_name} ({column_names}) VALUES ({column_values})")
+        connection.commit()
+    except mysql.connector.Error as err:
+        print("Error inserting data:", err)
 
 def get_data(ip, port, number_of_slave, holding_register_list):
 
@@ -108,20 +127,27 @@ def get_data(ip, port, number_of_slave, holding_register_list):
         time.sleep(0.1)
     client.close()
     time.sleep(0.1)
+    return name_of_register, reading
+
+if __name__ == "__main__":
+    connection = create_connection()
+    db_name = "power_meter2"
+    create_database(connection, db_name)
     
-
-
-while True:
-    for ip, value in ip_list.items():
-        print(ip)
-        
-        
-        for i in range(value):
-            number_of_slave = int(i) + 1
-            print(f"Number of slave: {number_of_slave}")
-            data = get_data(ip, port, number_of_slave, holding_register_list)
-            time.sleep(0.1)
-        
-        time.sleep(update_time)
-
-
+    while True:
+        for ip, value in ip_list.items():
+            print(ip)
+            data = {}
+            
+            for i in range(value):
+                number_of_slave = int(i) + 1
+                print(f"Number of slave: {number_of_slave}")
+                data.update(get_data(ip, port, number_of_slave, holding_register_list))
+                time.sleep(0.1)
+            
+            # Insert data into MySQL table
+            table_name = "powermeter1"
+            create_table(connection, table_name, data.keys())
+            insert_data(connection, table_name, data)
+            
+            time.sleep(update_time)
