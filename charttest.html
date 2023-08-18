@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+    #home {
+
+       margin: 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+   }
+
+   #home_dash {
+
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+   }
+
+        #side-button_1 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 19.5%;
+            left: 3.7%;
+
+
+        }
+
+        #side-button_2 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 25.5%;
+            left: 3.7%;
+
+
+        }
+
+        #side-button_3 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 32%;
+            left: 3.7%;
+
+
+        }
+
+        #side-button_m {
+            position: absolute;
+            height: 360px;
+            width: 1116px;
+            bottom: 0;
+            left: 0%;
+
+        }
+
+        #top-sub-button {
+            position: absolute;
+            top: 8.5%;
+            left: 0%;
+            display: flex;
+
+        }
+
+        #top-button_5 {
+            margin-left: 23px;
+            height: 40px;
+            width: 94px;
+
+
+        }
+
+        #text {
+            visibility: hidden;
+
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>Home67</title>
+</head>
+<body>
+    <div id="home">
+        <div id="home_dash">
+
+          <div id="top-sub-button">
+
+            <a href="{{ url_for('dashboards_dash') }}">
+                <div id="top-button_5"></div>
+            </a>
+
+            <a href="{{ url_for('redirect_home') }}">
+                <div id="top-button_5"></div>
+            </a>
+
+            <a href="{{ url_for('tables_dash') }}">
+                <div id="top-button_5"></div>
+            </a>
+
+            <a href="{{ url_for('alarms_dash') }}">
+                <div id="top-button_5"></div>
+            </a>
+
+            <a href="{{ url_for('reports_dash') }}">
+                <div id="top-button_5"></div>
+            </a>
+
+            <a href="{{ url_for('cost_dash') }}">
+                <div id="top-button_5"></div>
+            </a>
+          </div>
+            
+          <div style="position: absolute; margin-left: auto;">
+              <button id="change_button" onclick="myFunction()">Click</button>
+          </div>
+
+          <img src="C:\\Users\\AhrNeloy\\Desktop\\Offline.SCHneider Eneergy monitor\\static\\images\\dashboards_dash.png">
+
+          <div id="side-button_m">
+              <div id="side-x" style="height: 250px; width: 1100px; margin-left: auto; margin-right: 0px; margin-top: 80px;">
+                  <div id="chart-container">
+                      <!-- Canvas for Chart.js -->
+                      <canvas id="myChart" style="width: 100%; max-width: 1100px; height: 100%; max-height: 720px;"></canvas>
+                  </div>
+              </div>
+          </div>
+
+          <script>
+            window.onload = function() {
+              createChart();
+} 
+              var xValues = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+              var current_month_values = [1900, 1830, 1540, 1660, 1715, 1833, 1923, 1854, 1523, 1676, 1727, 1847, 1676];
+              var previous_month_values = [1800, 1730, 1440, 1560, 1615, 1733, 1823, 1754, 1423, 1576, 1627, 1747, 1576];
+
+              var chart;
+
+              function createChart(chartType, data,previous_month_values, backgroundColor) {
+                
+                  var ctx = document.getElementById('myChart').getContext('2d');
+                  console.log('myChart my chart has ben created')
+                  console.log(ctx)
+
+                  return new Chart(ctx, {
+                      type: chartType,
+                      data: {
+                          labels: xValues,
+                          datasets: [{
+                              label: 'Current Month',
+                              backgroundColor: backgroundColor,
+                              data: data
+                          }, {
+                            label: 'Previous Month',
+                            backgroundColor: "blue",
+                            data: previous_month_values
+                          }
+                        
+                        
+                        ]
+                      },
+                      options: {
+                          legend: {
+                              position: 'top',
+                              labels: {
+                                  fontColor: 'blue'
+                              }
+                          },
+                          title: {
+                              display: true,
+                              text: "Keating Electricity"
+                          },
+                          plugins: {
+                              subtitle: {
+                                  display: true,
+                                  text: 'Chart Subtitle',
+                                  color: 'blue',
+                                  font: {
+                                      size: 12,
+                                      family: 'tahoma',
+                                      weight: 'normal',
+                                      style: 'italic'
+                                  },
+                                  padding: {
+                                      bottom: 10
+                                  }
+                              }
+                          }
+                      }
+                  });
+              }
+
+              function myFunction() {
+                  var button = document.getElementById("change_button");
+                  var chartContainer = document.getElementById("chart-container");
+
+                  if (button.innerText === "Click") {
+                      button.innerText = "changed!";
+                      chartContainer.innerHTML = ''; // Clear the chart container
+                      chartContainer.innerHTML = '<canvas id="myChart" style="width: 100%; max-width: 1100px; height: 100%; max-height: 720px;"></canvas>';
+                      chart = createChart("bar", current_month_values, previous_month_values, "green");
+                      console.log("If statement executed");
+                  } else {
+                      button.innerText = "Click";
+                      chartContainer.innerHTML = ''; // Clear the chart container
+                      chartContainer.innerHTML = '<canvas id="myChart" style="width: 100%; max-width: 1100px; height: 100%; max-height: 720px;"></canvas>';
+                      chart = createChart("pie", previous_month_values, current_month_values, "blue");
+                      console.log("Else statement executed");
+                  }
+              }
+
+              // Initial chart creation
+              var chartContainer = document.getElementById("chart-container");
+              chart = createChart("bar", current_month_values, previous_month_values, "green");
+          </script>
+      </div>
+  </div>
+</body>
+</html>
