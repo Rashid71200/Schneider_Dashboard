@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            #home {
+       
+       margin: 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+   }
+
+   #home_dash {
+  
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+   }
+
+        #side-button_1 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 19.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_2 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 25.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_3 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 32%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_4 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 38.5%;
+            left: 3.7%;
+        }
+
+                #side-button_m {
+            position: absolute;
+            height: 360px;
+            width: 1116px;
+            bottom: 0;
+            left: 0%;
+
+        }
+        
+        #top-sub-button {
+            position: absolute;
+            top: 8.5%;
+            left: 0%;
+            display: flex;
+
+        }
+
+        #top-button_5 {
+            margin-left: 23px;
+            height: 40px;
+            width: 94px;
+          
+         
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script>function nextFunction() {
+// Get the current URL
+// Get the current URL
+const currentUrl = window.location.href;
+
+// Check if the last character of the current URL is a number
+const lastCharacterIsNumber = !isNaN(currentUrl[currentUrl.length - 1]);
+
+// Define a function to increment a numeric string
+function incrementNumericString(str) {
+    const numericValue = parseInt(str) + 1;
+    return String(numericValue);
+}
+
+// Create a new URL with an incremented numeric part
+let newUrl;
+
+if (lastCharacterIsNumber) {
+    // Increment existing numeric part
+    newUrl = currentUrl.replace(/\d+$/, incrementNumericString(currentUrl.match(/\d+$/)[0]));
+
+    // Check if the last digit of the newUrl is 8 or more
+    if (parseInt(newUrl[newUrl.length - 1]) >= 8) {
+        newUrl = newUrl.slice(0, -1); // Remove the last character
+    }
+} else {
+    // Append "1" to the end of the URL
+    newUrl = currentUrl + "1";
+}
+
+// Redirect to the new URL
+window.location.href = newUrl;
+
+
+
+}</script>
+    <title>dashboard</title>
+</head>
+<body>
+    <div id="home">
+        <div id="home_dash">
+
+            {% block content2 %}
+            {% endblock %}
+
+            <div id="top-sub-button">
+
+                <a href="{{ url_for('dashboards_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+                
+                <a href="{{ url_for('redirect_home') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+                <a href="{{ url_for('tables_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+
+                <a href="{{ url_for('alarms_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+                
+                <a href="{{ url_for('reports_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+                <a href="{{ url_for('cost_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+            </div>
+
+
+            
+     
+        </div>
+    </div>
+
+    
+</body>
+</html>

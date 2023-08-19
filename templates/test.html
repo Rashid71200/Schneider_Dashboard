@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+#bottom-button_5 {
+                border: solid black;
+            margin-left: 30px;
+            height: 30px;
+            width: 135px;
+         
+        }
+
+        #bottom-sub-button {
+            position: absolute;
+            top: 19.3%;
+            left: 80.5%;
+        }
+
+    #home {
+       
+       margin: 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+   }
+
+   #home_dash {
+  
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+   }
+
+        #side-button_1 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 19.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_2 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 25.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_3 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 32%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_4 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 38.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #top-sub-button {
+            position: absolute;
+            top: 8.5%;
+            left: 0%;
+            display: flex;
+
+        }
+
+        #top-button_5 {
+            margin-left: 23px;
+            height: 40px;
+            width: 94px;
+            border: 2px solid black;
+         
+        }
+
+
+
+        #p1st-powermeter-button_5 {
+    margin-left: 0px;
+    height: 18px;
+    width: 110px;
+    border: solid black; 
+    display: inline-block; /* or display: flex; */
+}
+
+#p1st-powermeter-button_5e {
+    margin-left: 0px;
+    height: 18px;
+    width: 190px;
+    border: solid black; 
+    display: inline-block; /* or display: flex; */
+}
+
+
+#p1st-powermeter-button_5i {
+    margin-left: 0px;
+    height: 18px;
+    width: 141px;
+    border: solid black; 
+    display: inline-block; /* or display: flex; */
+}
+
+#p1st-powermeter-button_5st {
+    margin-left: 0px;
+    height: 18px;
+    width: 80px;
+    border: solid black; 
+    display: inline-block; /* or display: flex; */
+}
+
+#p1st-powermeter-button_5k {
+    margin-left: 0px;
+    height: 18px;
+    width: 160px;
+    border: solid black; 
+    display: inline-block; /* or display: flex; */
+}
+
+
+
+
+#p1st-powermeter-button {
+    border: solid black; 
+    display: flex;
+    position: absolute;
+    left: 1.7%;
+    top: 20%;
+}
+
+#p1st-powermeter-button-index {
+    margin: 0;
+    display: flex;
+    top: 13.5%;
+    left: 1%;
+}
+
+
+
+
+    </style>
+                {% block content1_css %}
+                {% endblock %}
+    <title>Home</title>
+</head>
+<body>
+    <div id="home">
+        <div id="home_dash">
+
+            <div id="top-sub-button">
+
+                <a href="{{ url_for('dashboards_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+                
+                <a href="{{ url_for('redirect_home') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+                <a href="{{ url_for('tables_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+
+                <a href="{{ url_for('alarms_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+                
+                <a href="{{ url_for('reports_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+                <a href="{{ url_for('cost_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+            </div>
+
+           
+
+
+
+            <div id="p1st-powermeter-button">
+
+                <div id="#p1st-powermeter-button-index">
+            
+                    <a href="{{   url_for('redirect_volts_amps', meter_number=1) }}">
+                        <div id="p1st-powermeter-button_5"></div>
+                    </a>
+                
+                    <a href="{{ url_for('redirect_power_quality') }}">
+                        <div id="p1st-powermeter-button_5"></div>
+                    </a>
+                
+                    <a href="{{ url_for('redirect_energy_dmd') }}">
+                        <div id="p1st-powermeter-button_5e"></div>
+                    </a>
+
+                    <a href="{{ url_for('redirect_inputs_outputs') }}">
+                        <div id="p1st-powermeter-button_5i"></div>
+                    </a>
+            
+
+                    <a href="{{ url_for('redirect_setpoints') }}">
+                        <div id="p1st-powermeter-button_5st"></div>
+                    </a>
+                
+                    <a href="{{ url_for('redirect_setup_diagnostic') }}">
+                        <div id="p1st-powermeter-button_5k"></div>
+                    </a>
+                
+
+                </div>
+            
+            </div>
+
+
+            <div id="bottom-sub-button">
+            
+                <a href="{{ url_for('redirect_industry_demand') }}">
+                    <div id="bottom-button_5"></div>
+                </a>
+            
+            </div>
+
+
+
+            {% block content %}
+ 
+    {% endblock %}
+
+        </div>
+    </div>
+
+    
+</body>
+</html>

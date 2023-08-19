@@ -1,0 +1,160 @@
+{% extends "index.html" %}
+{% block content1_css %}
+        <style>
+        #side-button_5 {
+            margin-left: 30px;
+            height: 30px;
+            width: 120px;
+        
+        }
+
+        #side-sub-button {
+            position: absolute;
+            top: 43.5%;
+            left: 3.7%;
+        }
+
+
+        #o1st-powermeter-button_5 {
+    margin-left: 70px;
+    height: 30px;
+    width: 152px;
+   
+    display: inline-block; /* or display: flex; */
+}
+
+#o1st-powermeter-button {
+   
+    display: flex;
+    position: absolute;
+    left: 15%;
+}
+
+#o1st-powermeter-button-index {
+    margin: 0;
+    display: flex;
+    top: 47.5%;
+    left: 1%;
+}
+
+
+
+
+#o2st-powermeter-button {
+    
+    display: flex;
+    position: absolute;
+    left: 18%;
+    top: 80.9%;
+}
+
+#o2st-powermeter-button-index {
+    margin: 0;
+    display: flex;
+    top: 67.5%;
+    left: 1%;
+}
+
+#o2st-powermeter-button_5 {
+    margin-left: 50px;
+    height: 30px;
+    width: 152px;
+  
+    display: inline-block; /* or display: flex; */
+}
+
+        </style>
+{% endblock %}
+
+
+{% block content %}
+        <img src="{{ url_for('static', filename='images/industry_energy.png') }}" class="image" alt="" width="1116px" height="808px">
+{% endblock %}
+
+
+{% block content1 %}
+<div id="side-sub-button">
+
+    <a href="{{ url_for('redirect_industry_demand') }}">
+        <div id="side-button_5"></div>
+    </a>
+    
+    <a href="{{ url_for('redirect_industry_energy') }}">
+        <div id="side-button_5"></div>
+    </a>
+
+    <a href="{{ url_for('redirect_industry_quality') }}">
+        <div id="side-button_5"></div>
+    </a>
+
+</div>
+
+
+
+<div id="o1st-powermeter-button">
+
+    <div id="#o1st-powermeter-button-index">
+
+        <a href="{{ url_for('redirect_volts_amps', meter_number=1) }}">
+            <div id="o1st-powermeter-button_5"></div>
+        </a>
+    
+        <a href="{{ url_for('redirect_volts_amps', meter_number=1) }}">
+            <div id="o1st-powermeter-button_5"></div>
+        </a>
+    
+        <a href="{{ url_for('redirect_volts_amps', meter_number=1) }}">
+            <div id="o1st-powermeter-button_5"></div>
+        </a>
+
+    </div>
+
+</div>
+
+
+<div id="o2st-powermeter-button">
+
+    <div id="#o2st-powermeter-button-index">
+
+        <a href="{{ url_for('redirect_volts_amps', meter_number=1) }}">
+            <div id="o2st-powermeter-button_5"></div>
+        </a>
+    
+        <a href="{{ url_for('redirect_volts_amps', meter_number=1) }}">
+            <div id="o2st-powermeter-button_5"></div>
+        </a>
+    
+        <a href="{{ url_for('redirect_volts_amps', meter_number=1) }}">
+            <div id="o2st-powermeter-button_5"></div>
+        </a>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<H3 style="position: absolute; top: 45%; left: 27%;"> {{ meter11 }}</H3>
+<H3 style="position: absolute; top: 45%; left: 47%;"> {{ meter21 }}</H3>
+<H3 style="position: absolute; top: 45%; left: 66.5%;"> {{ meter31 }}</H3>
+
+<H3 style="position: absolute; top: 47%; left: 27%;"> {{ meter12 }} </H3>
+<H3 style="position: absolute; top: 47%; left: 47%;"> {{ meter22 }} </H3>
+<H3 style="position: absolute; top: 47%; left: 66.5%;"> {{ meter32 }} </H3>
+
+<H3 style="position: absolute; top: 78.5%; left: 28%;"> {{ meter41 }} </H3>
+<H3 style="position: absolute; top: 78.5%; left: 45.5%;"> {{ meter51 }} </H3>
+<H3 style="position: absolute; top: 78.5%; left: 64.5%;"> {{ meter61 }} </H3>
+
+<H3 style="position: absolute; top: 80.5%; left: 28%;"> {{ meter42 }} </H3>
+<H3 style="position: absolute; top: 80.5%; left: 46.5%;"> {{ meter52 }} </H3>
+<H3 style="position: absolute; top: 80.5%; left: 64.5%;"> {{ meter62 }} </H3>
+        
+{% endblock %}

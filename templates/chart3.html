@@ -1,0 +1,142 @@
+{% extends "index2.html" %}
+{% block content2 %}
+
+                <div style="position: absolute; left: 89%; top: 60%; z-index: 9999;">
+                <button id="change_button" onclick="myFunction() ">Weeks</button>
+                <button id="change_page_button" onclick="nextFunction() ">Slide</button>
+            </div>
+
+        <img src="{{ url_for('static', filename='images/11.png') }}" class="image" alt="" width="1116px" height="808px">
+
+                           <div id="side-button_m" style="Display: flex">
+
+                <div id="side-x" style="height: 225px; width: 495px; ; margin-left: 30px; margin-right: auto; margin-top: 84px;">
+                <canvas id="myChart" style="width: 100%; max-width: 1100px; height: 100%; max-height: 720px; "></canvas>
+ <script>
+ var xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+var yValues = [3837, 2895, 4171, 4702, 1631, 2545, 4554, 3389, 1842, 1345, 4901, 1246, 3074, 2129, 2092, 2418, 3145, 1295, 1795, 4415, 3706, 3180, 4939, 4165, 2259, 3278, 4073, 1922, 4026, 4023, 1305];
+var yValues1 = [134, 161, 110, 192, 197, 148, 141, 179, 192, 202, 217, 199, 153, 139, 125, 167, 115, 179, 162, 134, 213, 139, 123, 211, 124, 151, 194, 202, 148, 202, 153];
+var barColors = ["red", "green","blue","orange","brown"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues,
+        backgroundColor: 'ForestGreen',
+        borderColor: ["DarkGreen"],
+        order:2,
+        yAxisID: 'one',
+
+    },
+        {
+                  backgroundColor: barColors,
+      data: yValues1,
+        backgroundColor: [
+           'rgb(246,242,0)',
+
+        ],
+      pointStyle: 'circle',
+      pointRadius: 6,
+      pointHoverRadius: 10,
+        borderColor: [
+           'rgb(65,180,255)',
+
+        ],
+        yAxisID: 'two',
+            order:1,
+        type: 'line',
+            borderWidth: 3
+
+        }
+    ]
+  },
+options: {
+  scales: {
+    x: {
+          grid: {
+            display: false
+          },
+      display: true,
+      title: {
+        display: false,
+        text: 'Date',
+      },
+    },
+    two: {
+        beginAtZero: false,
+          grid: {
+            display: false
+          },
+
+      display: true,
+      position: 'right',
+      title: {
+        display: false,
+        text: 'value',
+
+      },
+
+    }
+  }
+}
+});
+
+                    </script>
+
+            </div>
+                           <div id="side-y" style="height: 225px; width: 495px; ; margin-left: auto; margin-right: 48px; margin-top: 84px;">
+                               <canvas id="myChart1" style="width: 100%; max-width: 1100px; height: 100%; max-height: 720px; "></canvas>
+                               <script>
+                                   var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var yValues = [122349, 137801, 117276, 127518, 129944, 138742, 140889, 141937, 125615, 138289, 142486, 112558];
+var yValues1 = [118632, 132749, 125468, 127382, 138901, 134590, 136732, 118941, 144265, 111826, 141704, 115459];
+var barColors = ["DarkGreen"];
+
+new Chart("myChart1", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    },{
+        backgroundColor: 'LimeGreen',
+      data: yValues1
+    }]
+  },
+    options: {
+  scales: {
+          x: {
+        beginAtZero: false,
+
+      display: true,
+                  grid: {
+            display: false
+          },
+
+    },
+
+    y: {
+        beginAtZero: false,
+
+      display: true,
+
+      title: {
+        display: false,
+
+        text: 'value',
+
+      },
+
+    }
+  }
+}
+});
+                               </script>
+                           </div>
+
+            </div>
+{% endblock %}

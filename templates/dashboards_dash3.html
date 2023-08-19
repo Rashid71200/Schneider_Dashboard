@@ -1,0 +1,135 @@
+{% extends "index2.html" %}
+{% block content2 %}
+
+                <div style="position: absolute; left: 89%; top: 60%; z-index: 9999;">
+                <button id="change_button" onclick="myFunction() ">Weeks</button>
+                <button id="change_page_button" onclick="nextFunction() ">Slide</button>
+            </div>
+
+        <img src="{{ url_for('static', filename='images/1.png') }}" class="image" alt="" width="1116px" height="808px">
+
+                           <div id="side-button_m"  style="position: absolute;height: 360px;width: 1116px;bottom: auto;top: 50px;left: 0%;">
+
+                <div id="side-x" style="height: 200px; width: 200px; ; margin-left: auto; margin-right: 110px; margin-top: 175px;">
+                <canvas id="myChart" style="width: 100%; max-width: 800px; height: 100%; max-height: 800px; "></canvas>
+ <script>
+ var xValues = [1, 2, 3,];
+var yValues = [3837, 2895, 4171];
+var yValues1 = [34,110, 192,];
+var barColors = ["red", "green","blue","orange","brown"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+        {
+                  backgroundColor: barColors,
+      data: yValues1,
+        backgroundColor: [
+           'rgba(17,100,4,0.9)',
+            'rgb(246,37,0)',
+            'rgb(65,180,255)',
+
+        ],
+      pointStyle: 'circle',
+      pointRadius: 6,
+      pointHoverRadius: 10,
+        borderColor: [
+           'rgb(255,255,255)',
+
+        ],
+
+            order:1,
+        type: 'pie',
+            borderWidth: 3
+
+        }
+    ]
+  },
+options: {
+      plugins: {
+            legend: {
+              display: false,
+            },
+          },
+  scales: {
+    x: {
+          grid: {
+            display: null
+          },
+      display: false,
+    },
+    y: {
+        beginAtZero: false,
+      display: false,
+              grid: {
+            display: null
+          },
+
+
+    }
+  }
+}
+});
+
+                    </script>
+
+            </div>
+                           <div id="side-y" style="height: 222px; width: 255px; ; margin-left: auto; margin-right: 85px; margin-top: 120px;">
+                               <canvas id="myChart1" style="width: 100%; max-width: 1100px; height: 100%; max-height: 1100px; "></canvas>
+                               <script>
+                                   var xValues = ["Lighting", "Manufacturing", "HVAC", ];
+var yValues = [122349, 137801, 117276, ];
+var yValues1 = [118632, 132749, 125468,];
+var barColors = ["DarkGreen"];
+
+new Chart("myChart1", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    },{
+        backgroundColor: 'LimeGreen',
+      data: yValues1
+    }]
+  },
+    options: {
+      plugins: {
+            legend: {
+              display: false,
+            },
+          },
+      indexAxis: 'y',
+  scales: {
+          x: {
+        beginAtZero: false,
+
+      display: false,
+                  grid: {
+            display: false
+          },
+
+    },
+
+    y: {
+        beginAtZero: false,
+
+      display: true,
+
+      title: {
+        display: false,
+
+      },
+
+    }
+  }
+}
+});
+                               </script>
+                           </div>
+
+            </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block content1_css %}
+        <style>
+        #bottom-button_5 {
+                border: solid black;
+            margin-left: 30px;
+            height: 30px;
+            width: 135px;
+         
+        }
+
+        #bottom-sub-button {
+            position: absolute;
+            top: 88.5%;
+            left: 80.5%;
+        }
+        </style>
+{% endblock %}
+
+
+
+        {% block content %}
+        <img src="{{ url_for('static', filename='images/building_dash.png') }}" class="image" alt="" width="1116px" height="808px">
+
+        <div id="bottom-sub-button">
+            
+                <a href="{{ url_for('redirect_one_line') }}">
+                    <div id="bottom-button_5"></div>
+                </a>
+            
+            </div>
+{% endblock %}
+            
+            
+            

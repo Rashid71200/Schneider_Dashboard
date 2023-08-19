@@ -1,0 +1,20 @@
+{% extends "test.html" %}
+
+{% block content1_css %}
+ 
+{% endblock %}
+
+
+
+        {% block content %}
+        <img src="{{ url_for('static', filename='images/inputs-outputs.png') }}" class="image" alt="" width="1116px" height="808px">
+
+        <div id="bottom-sub-button">
+            
+                <a href="{{ url_for('redirect_to_building') }}">
+                    <div id="bottom-button_5"></div>
+                </a>
+            
+            </div>
+{% endblock %}
+            

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    #home {
+       
+       margin: 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+   }
+
+   #home_dash {
+  
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+   }
+
+        #side-button_1 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 19.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_2 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 25.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_3 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 32%;
+            left: 3.7%;
+
+            
+        }
+
+        #side-button_4 {
+            position: absolute;
+            height: 40px;
+            width: 137px;
+            top: 38.5%;
+            left: 3.7%;
+
+            
+        }
+
+        #top-sub-button {
+            position: absolute;
+            top: 8.5%;
+            left: 0%;
+            display: flex;
+
+        }
+
+        #top-button_5 {
+            margin-left: 23px;
+            height: 40px;
+            width: 94px;
+          
+         
+        }
+
+
+
+
+    </style>
+                {% block content1_css %}
+                {% endblock %}
+    <title>Home</title>
+</head>
+<body>
+    <div id="home">
+        <div id="home_dash">
+
+            <div id="top-sub-button">
+
+                <a href="{{ url_for('dashboards_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+                
+                <a href="{{ url_for('redirect_home') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+                <a href="{{ url_for('tables_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+
+                <a href="{{ url_for('alarms_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+                
+                <a href="{{ url_for('reports_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+                <a href="{{ url_for('cost_dash') }}">
+                    <div id="top-button_5"></div>
+                </a>
+            
+            </div>
+
+
+            {% block content %}
+            {% endblock %}
+
+
+            
+            <a href="{{ url_for('redirect_home') }}">
+                <div id="side-button_1"></div>
+            </a>
+
+            <a href="{{ url_for('redirect_to_campus') }}">
+                <div id="side-button_2"></div>
+            </a>
+
+            <a href="{{ url_for('redirect_to_building') }}">
+                <div id="side-button_3"></div>
+            </a>
+
+            <a href="{{ url_for('redirect_to_industry') }}">
+                <div id="side-button_4"></div>
+
+                {% block content1 %}
+                {% endblock %}
+            </a>
+        </div>
+    </div>
+
+    
+</body>
+</html>

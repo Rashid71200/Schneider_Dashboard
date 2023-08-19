@@ -1,0 +1,39 @@
+{% extends "test.html" %}
+
+{% block content1_css %}
+
+{% endblock %}
+
+
+
+        {% block content %}
+        <img src="{{ url_for('static', filename='images/volts-amps.png') }}" class="image" alt="" width="1116px" height="808px">
+            <H3 style="position: absolute; top: 37.5%; left: 3%;">Voltage C-A {{ voltage_ca }}</H3>
+            <H3 style="position: absolute; top: 32.9%; left: 13%;">Voltage B-C {{ voltage_bc }}</H3>
+            <H3 style="position: absolute; top: 42%; left: 13%;">Voltage A-B {{ voltage_ab }}</H3>
+            <H3 style="position: absolute; top: 55.5%; left: 13%;">Voltage Unbalance L-N Worst {{ voltage_unbalance_ln_worst }} </H3>
+            <H3 style="position: absolute; top: 61.6%; left: 13%;">Voltage L-N Avg {{ voltage_ln_avg }} </H3>
+
+            <H3 style="position: absolute; top: 46.1%; left: 24%;">Current A {{ current_a }} </H3>
+            <H3 style="position: absolute; top: 37.5%; left: 24%;">Current B {{ current_b }} </H3>
+            <H3 style="position: absolute; top: 28%; left: 24%;">Current C {{ current_c }} </H3>
+            <H3 style="position: absolute; top: 61.6%; left: 24%;">Current Avg {{ current_avg }} </H3>
+
+            <H3 style="position: absolute; top: 46.1%; left: 34.5%;">Active Power A {{ active_power_a }} </H3>
+            <H3 style="position: absolute; top: 28%; left: 34.5%;">Active Power B {{ active_power_b }}</H3>
+            <H3 style="position: absolute; top: 37%; left: 34.5%;">Active Power C {{ active_power_c }}</H3>
+            <H3 style="position: absolute; top: 51.7%; left: 34.5%;">Active Power Total {{ active_power_total }} </H3>
+            <H3 style="position: absolute; top: 57.2%; left: 34.5%;">Reactive Power Total {{ reactive_power_total }} </H3>
+            <H3 style="position: absolute; top: 61.6%; left: 34.5%;">Apparent Power Total {{ apparent_power_total }}</H3>
+
+
+            <H3 style="position: absolute; top: 55.5%; left: 50%;">Voltage A-N {{ voltage_an }} </H3>
+            <H3 style="position: absolute; top: 55.5%; left: 60.5%;">Voltage B-N {{ voltage_bn }} </H3>
+            <H3 style="position: absolute; top: 55.5%; left: 70.5%;">Voltage C-N {{ voltage_cn }} </H3>
+            <H3 style="position: absolute; top: 55.5%; left: 80.5%;">Voltage L-N Avg {{ voltage_ln_avg }} </H3>
+
+            <H3 style="position: absolute; top: 31%; left: 80.5%;">Frequency {{ frequency }} </H3>
+            <H3 style="position: absolute; top: 42%; left: 80.5%;">Power Factor Total IEC {{ power_factor_total_iec }} </H3>
+
+{% endblock %}
+            

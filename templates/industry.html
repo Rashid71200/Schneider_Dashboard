@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% block content1_css %}
+        <style>
+        #side-button_5 {
+            margin-left: 30px;
+            height: 30px;
+            width: 120px;
+         
+        }
+
+        #side-sub-button {
+            position: absolute;
+            top: 43.5%;
+            left: 3.7%;
+        }
+        </style>
+{% endblock %}
+
+
+{% block content %}
+        <img src="{{ url_for('static', filename='images/industry_dash.png') }}" class="image" alt="" width="1116px" height="808px">
+{% endblock %}
+
+
+{% block content1 %}
+<div id="side-sub-button">
+
+    <a href="{{ url_for('redirect_industry_demand') }}">
+        <div id="side-button_5"></div>
+    </a>
+    
+    <a href="{{ url_for('redirect_industry_energy') }}">
+        <div id="side-button_5"></div>
+    </a>
+
+    <a href="{{ url_for('redirect_industry_quality') }}">
+        <div id="side-button_5"></div>
+    </a>
+
+</div>
+        
+{% endblock %}
+            
+ 

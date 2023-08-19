@@ -1,0 +1,110 @@
+
+{% extends "index.html" %}
+
+{% block content1_css %}
+        <style>
+
+#o1st-powermeter-button_5 {
+    margin-left: 125px;
+    height: 30px;
+    width: 152px;
+    /* border: solid red;  */
+    display: inline-block; /* or display: flex; */
+}
+
+#o1st-powermeter-button {
+        /* border: solid black;   */
+    
+    display: flex;
+    position: absolute;
+    top: 32%;
+    left: 19%;
+}
+
+#o1st-powermeter-button-index {
+    margin: 0;
+    display: flex;
+    top: 0%;
+    left: 5%;
+}
+
+
+
+
+#o2st-powermeter-button_5 {
+    margin-left: 125px;
+    height: 30px;
+    width: 152px;
+
+    display: inline-block; /* or display: flex; */
+   
+}
+
+#o2st-powermeter-button {
+  
+    display: flex;
+    position: absolute;
+    top: 47%;
+    left: 19%;
+}
+
+#o2st-powermeter-button-index {
+    margin: 0;
+    display: flex;
+    top: 27.5%;
+    left: 5%;
+}
+
+        </style>
+{% endblock %}
+
+
+        {% block content %}
+        <img src="{{ url_for('static', filename='images/home_dash.png') }}" class="image" alt="" width="1116px" height="808px">
+
+
+        <div id="o1st-powermeter-button">
+
+                <div id="#o1st-powermeter-button-index">
+            
+                   
+                        <div id="o1st-powermeter-button_5">
+                                <H2> {{ total_energy_usage }}</H2>
+                        </div>
+                   
+                    
+                        <div id="o1st-powermeter-button_5">
+                                <div><H2>{{ total_voltage }}</H2></div>
+                                
+                        </div>
+                   
+            
+                </div>
+            
+            </div>
+
+
+
+            <div id="o2st-powermeter-button">
+
+                <div id="#o2st-powermeter-button-index">
+            
+                    
+                        <div id="o2st-powermeter-button_5">
+                                <H2>{{ total_load }}</H2>
+                        </div>
+                
+                
+                   
+                        <div id="o2st-powermeter-button_5">
+                                <H2>{{ total_power_factor }}</H2>
+                        </div>
+               
+            
+                </div>
+            
+            </div>
+{% endblock %}
+
+            
+            
